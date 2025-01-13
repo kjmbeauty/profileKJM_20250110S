@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+th.board_title_td {
+	font-family: NanumGothic, Arial;
+	font-size: 16px;
+	color: #FFFFFF;
+}
+
+tr.board_title_tr {
+	background-color: #006A67;
+	height: 50px;
+}
+
+td.board_content_td {
+	font-family: NanumGothic, Arial;
+	font-size: 18px;
+	color: #000B58;
+}
+
+tr.board_content_tr {
+	background-color: #FFF4B7;
+	height: 40px;
+	border: 1px solid #006A67;
+}
