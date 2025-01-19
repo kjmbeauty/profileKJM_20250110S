@@ -4,4 +4,53 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.kjmbeauty.profile.dao.BoardDao">
 
+	<!-- 글쓰기 -->
+	<insert id="writeDao">
+		INSERT INTO profileboard(bnum, bid, bname, btitle, bcontent, bhit)
+			VALUES (profileboard_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4}, 0) 
+	</insert>
+	
+	<!-- 모든 글 가져오기 -->
+	<select id="listDao" resultType="com.kjmbeauty.profile.dto.BoardDto">
+		SELECT *
+    		FROM
+        		(SELECT A.*, ROWNUM as rnum
+            		FROM
+                		(SELECT * FROM profileboard ORDER BY bnum DESC)A)
+                    		WHERE rnum >= #{param2}*#{param1}-(#{param1}-1) AND rnum <![CDATA[<]]>= #{param2}*#{param1}
+	</select>
+	
+	<!-- 글 번호로 글 가져오기 -->
+	<select id="contentViewDao" resultType="com.kjmbeauty.profile.dto.BoardDto">
+		SELECT * 
+			FROM profileboard 
+				WHERE bnum=#{param1}
+	</select>
+	
+	<!-- 글 수정하기 -->
+	<update id="contentModifyDao">
+		UPDATE profileboard 
+			SET btitle=#{param2}, bcontent=#{param3}
+				WHERE bnum=#{param1}			
+	</update>
+	
+	<!-- 글 삭제하기 -->
+	<delete id="contentDeleteDao">
+		DELETE FROM profileboard WHERE bnum=#{param1}
+	</delete>
+	
+	<!-- 게시판 글의 총 갯수 가져오기 -->
+	<select id="totalBoardCountDao" resultType="int">
+		SELECT count(*) FROM profileboard
+	</select>
+	
+	<!-- 조회수 1 증가하기 -->
+	<update id="updateHitDao">
+		UPDATE profileboard SET bhit=bhit+1 WHERE bnum=#{param1}
+	</update>
+	
+
+
+
+
 </mapper>    

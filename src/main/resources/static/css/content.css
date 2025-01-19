@@ -21,6 +21,7 @@ input.input_box {
 }
 
 input.content_btn {
+	font-family: NanumGothic;
 	border: 2px solid #000B58;
 	width: 150px;
 	height: 50px;
@@ -32,9 +33,10 @@ input.content_btn {
 
 input.content_btn:hover {
 	border: 2px solid #000B58;
+	font-family: NanumGothic;	
 	width: 150px;
 	height: 50px;
-	background-color: #EBE3D5;
+	background-color: #B0A695;
 	font-size: 20px;
 	color: #FFFFFF;
 	padding: 10px;
@@ -45,7 +47,7 @@ input.check_btn {
 	border: 1px solid #000B58;
 	width: 100px;
 	height: 35px;
-	background-color: #003161;
+	background-color: #776B5D;
 	font-size: 15px;
 	color: #FFFFFF;
 	padding:5px;
@@ -53,9 +55,10 @@ input.check_btn {
 
 input.check_btn:hover {
 	border: 1px solid #000B58;
+	font-family: NanumGothic;	
 	width: 100px;
 	height: 35px;
-	background-color: #0683ff;
+	background-color: #B0A695;
 	font-size: 15px;
 	color: #FFFFFF;
 	padding:5px;

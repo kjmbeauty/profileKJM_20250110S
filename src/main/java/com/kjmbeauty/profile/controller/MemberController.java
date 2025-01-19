@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.kjmbeauty.profile.dao.MemberDao;
+import com.kjmbeauty.profile.dto.MemberDto;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -92,8 +93,77 @@ public class MemberController {
 		
 	}
 	
-	
-	
-	
+		@GetMapping(value = "/logout")
+		public String logout(HttpSession session, Model model) {
+			
+			if(session.getAttribute("sessionid")==null) { //로그인하지 않은 상태
+				model.addAttribute("msg", "로그인 상태가 아닙니다. 로그인 창으로 이동합니다.");
+				model.addAttribute("url", "login");
+				
+				return "alert/alert";
+			}
+			
+			model.addAttribute("msg", "정말 로그아웃 하시겠습니까?");
+			model.addAttribute("url", "logoutOk");
+			
+			return "alert/confirm";
+		}
+		
+		@GetMapping(value = "/logoutOk")
+		public String logoutOk(HttpSession session, Model model) {
+			
+			if(session.getAttribute("sessionid")==null) { //로그인하지 않은 상태
+				
+				model.addAttribute("msg", "로그인 상태가 아닙니다. 로그인 창으로 이동합니다.");
+				model.addAttribute("url", "login");
+				
+				return "alert/alert";
+			}
+			
+			session.invalidate();//로그아웃
+			
+			model.addAttribute("msg", "로그아웃 하셨습니다. 안녕히가세요.");
+			model.addAttribute("url", "login");
+			
+			return "alert/alert";
+		}
+		
+		@GetMapping(value = "/member")
+		public String member(HttpServletRequest request, Model model, HttpSession session) {
+			
+			String sid = (String) session.getAttribute("sessionid");//현재 로그인한 유저의 아이디
+			
+			MemberDao mDao = sqlSession.getMapper(MemberDao.class);
+			
+			MemberDto mDto = mDao.memberInfoDao(sid);
+			
+			model.addAttribute("mDto", mDto);
+			
+			return "memberForm";
+		}
+		
+		@PostMapping(value = "/modify")
+		public String modify(HttpServletRequest request, Model model) {
+			
+			String mid = request.getParameter("mid");
+			String mpw = request.getParameter("mpw");
+			String mname = request.getParameter("mname");
+			String memail = request.getParameter("memail");		
+			
+			MemberDao mDao = sqlSession.getMapper(MemberDao.class);
+			
+			int modifyFlag = mDao.memberModifyDao(mid, mpw, mname, memail);//1이면 수정 성공
+			
+			if(modifyFlag == 1) {
+				model.addAttribute("msg", "회원정보 수정 완료.");
+				model.addAttribute("url", "member");
+				return "alert/alert";
+			} else {
+				model.addAttribute("msg", "회원정보 수정 실패!");			
+				return "alert/alert2";
+			}
+		}
+		
+
 
 }

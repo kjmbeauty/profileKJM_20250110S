@@ -22,5 +22,11 @@
 	<select id="loginDao" resultType="int">
 		SELECT count(*) FROM profilemember WHERE mid=#{param1} AND mpw=#{param2}
 	</select>
+
+	<!-- 회원 정보 수정 -->
+	<update id="memberModifyDao">
+		UPDATE profilemember SET mpw=#{param2}, mname=#{param3}, memail=#{param4} WHERE mid=#{param1}
+	</update>
+	
 	
 </mapper>  

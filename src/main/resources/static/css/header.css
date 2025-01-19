@@ -19,6 +19,6 @@ a.header_link:link {
 a.header_link:hover {
 	font-weight: bold;
 	/* text-decoration: None; */ 
-	text-decoration: underline;
+	/* text-decoration: underline; */
 	color:#EBE3D5;
 }
