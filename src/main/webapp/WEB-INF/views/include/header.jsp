@@ -54,7 +54,7 @@
 				&nbsp;
 			</td>					
 			<td width="4%">
-				<a href="board" class="header_link"><span class="hedder_menu">BOARD</span></a>
+				<a href="list" class="header_link"><span class="hedder_menu">BOARD</span></a>
 			</td>
 			<td width="1%">
 				&nbsp;

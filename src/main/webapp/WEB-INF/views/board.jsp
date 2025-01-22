@@ -62,7 +62,7 @@
 					</tr>
 					</c:forEach>
 					
-					<tr height="10">
+					<tr height="20">
 						<td></td>
 					</tr>
 					

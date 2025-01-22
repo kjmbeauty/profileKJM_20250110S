@@ -88,7 +88,7 @@
 					<tr>						
 						<td colspan="2" align="center">
 							<input type="submit" value="정보수정" class="content_btn">	
-							<input type="button" value="취소" class="content_btn" onclick="javascript:location.href='history.go(-1)'">						
+							<input type="button" value="취소" class="content_btn" onclick="javascript:history.go(-1)">						
 						</td>						
 					</tr>
 				</form>

@@ -25,7 +25,7 @@ public class PageDto {
 		
 		this.endPage = (int)((Math.ceil(criteria.getPageNum()/10.0))*10);
 		
-		this.startPage = this.startPage - 9;
+		this.startPage = this.endPage - 9;
 		
 		this.realEndPage = (int)Math.ceil(total*1.0/criteria.getAmount());
 		
